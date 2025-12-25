@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardioid Lesson | Vector View</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Extra styles specific to this page */
+        .breadcrumb { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
+        .breadcrumb a { color: var(--accent-primary); }
+        
+        .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        
+        /* Machine Panel (Left) */
+        .machine-panel { background: #fff; padding: 30px; border-radius: 20px; box-shadow: var(--shadow-soft); text-align: center; }
+        .stage-diagram { width: 100%; height: 250px; background: #f0f4f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative; margin-bottom: 20px; }
+        .mic-icon { font-size: 50px; }
+        
+        /* Graph Panel (Right) */
+        .graph-panel { background: #fff; padding: 30px; border-radius: 20px; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; align-items: center; }
+        .controls { width: 100%; margin-top: 20px; display: grid; gap: 15px; }
+        .control-group { display: flex; justify-content: space-between; align-items: center; }
+        input[type=range] { width: 60%; accent-color: var(--accent-primary); }
+
+        /* Stats Row */
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 60px; }
+        .stat-card { background: #fff; padding: 20px; border-radius: 16px; border: 1px solid var(--border-subtle); }
+        .stat-title { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .math-eq { font-family: monospace; font-size: 1.1rem; color: var(--accent-secondary); }
+
+        /* Challenge Section */
+        .challenge-section { background: var(--bg-surface-muted); padding: 40px; border-radius: 24px; }
+        .challenge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .feedback-box { margin-top: 15px; font-weight: 500; min-height: 24px; }
+        .success { color: var(--accent-primary); }
+        .fail { color: #ff6b6b; }
+        
+        @media (max-width: 900px) { .split-layout, .challenge-grid, .stats-row { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; display: flex; gap:10px; align-items:center;">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 32 32" width="32" height="32">
+                            <circle cx="16" cy="16" r="15" stroke="#D1D9E6" stroke-width="1" fill="none"/>
+                            <path d="M16 16 Q 24 4, 16 4" stroke="#19D3B3" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <span class="brand-name">Vector<span class="text-dark">View</span></span>
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#" class="active">Curves</a>
+                <a href="#">Challenges</a>
+                <a href="#">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+        
+        <div class="breadcrumb"><a href="index.html">Home</a> / Curves / Cardioid</div>
+        <h1>Cardioid Pattern</h1>
+        <p class="subtitle" style="margin-bottom: 40px;">The industry standard for live vocals. Focuses on the front, ignores the back.</p>
+
+        <div class="split-layout">
+            
+            <div class="machine-panel">
+                <div class="stage-diagram">
+                    <div style="position: absolute; top: 20px; color: #aaa; font-size: 12px;">BACK (Speakers)</div>
+                    <div style="position: absolute; bottom: 20px; color: #aaa; font-size: 12px;">FRONT (Singer)</div>
+                    <div class="mic-icon">🎤</div>
+                    <div style="position: absolute; width: 100px; height: 120px; background: rgba(25, 211, 179, 0.2); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; transform: rotate(180deg); bottom: 50px;"></div>
+                </div>
+                <h3>Stage Microphone</h3>
+                <p>Cardioid mics are used on stage to pick up the singer while ignoring the loud drum kit or monitors behind them.</p>
+            </div>
+
+            <div class="graph-panel">
+                <canvas id="lessonCanvas" width="340" height="340"></canvas>
+                
+                <div class="controls">
+                    <div class="control-group">
+                        <label>Source Angle (θ)</label>
+                        <input type="range" id="angleSlider" min="0" max="360" value="0">
+                    </div>
+                    <div class="control-group">
+                        <label>Sensitivity gain</label>
+                        <input type="range" id="gainSlider" min="50" max="150" value="100">
+                    </div>
+                    <p id="readout" style="font-size: 0.9rem; text-align: center; color: var(--accent-primary);">Current Pickup: 100%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-title">Equation</div>
+                <div class="math-eq">r = 1 + cos(θ)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Key Feature</div>
+                <div><strong>Rear Null</strong> at 180°</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Best For</div>
+                <div>Vocals, Snare Drums, Podcasts</div>
+            </div>
+        </div>
+
+        <div class="challenge-section">
+            <h2>Engineering Challenge: The Noisy Stage</h2>
+            <div class="challenge-grid">
+                <div>
+                    <p><strong>Scenario:</strong> You are setting up sound for a rock concert. The lead singer is standing directly in front of a loud drum kit.</p>
+                    <p style="margin-top: 10px;">Which microphone pattern do you choose to ensure the drums don't drown out the singer?</p>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 12px;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: 500;">Select Pattern:</label>
+                    <select id="challengeSelect" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+                        <option value="select">-- Choose --</option>
+                        <option value="omni">Omnidirectional (Circle)</option>
+                        <option value="cardioid">Cardioid (Heart)</option>
+                        <option value="figure8">Figure-8</option>
+                    </select>
+                    <div id="challengeFeedback" class="feedback-box"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="lesson.js"></script>
+</body>
+</html>

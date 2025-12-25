@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiral Lesson | Vector View</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic Styles */
+        .breadcrumb { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
+        .breadcrumb a { color: var(--accent-primary); }
+        .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .machine-panel, .graph-panel { background: #fff; padding: 30px; border-radius: 20px; box-shadow: var(--shadow-soft); text-align: center; }
+        .controls { width: 100%; margin-top: 20px; }
+        input[type=range] { width: 100%; accent-color: var(--accent-primary); }
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 60px; }
+        .stat-card { background: #fff; padding: 20px; border-radius: 16px; border: 1px solid var(--border-subtle); }
+        .challenge-section { background: var(--bg-surface-muted); padding: 40px; border-radius: 24px; }
+        .feedback-box { margin-top: 15px; font-weight: 500; }
+        .success { color: var(--accent-primary); } .fail { color: #ff6b6b; }
+        @media (max-width: 900px) { .split-layout, .stats-row { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo"><span class="brand-name">Vector<span class="text-dark">View</span></span></div>
+            <nav class="nav-links"><a href="index.html">Home</a></nav>
+        </div>
+    </header>
+
+    <div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+        <div class="breadcrumb"><a href="index.html">Home</a> / Curves / Spiral</div>
+        <h1>Spiral Pattern</h1>
+        <p class="subtitle" style="margin-bottom: 40px;">Archimedean spirals used in scanning radars and broadband antennas.</p>
+
+        <div class="split-layout">
+            <div class="machine-panel">
+                <h3>Scanning Radar</h3>
+                <div style="font-size: 60px; margin: 20px 0;">📡</div>
+                <p>Radars use spiral scanning to cover a wide area, gradually moving outwards to detect objects at different ranges.</p>
+            </div>
+            <div class="graph-panel">
+                <canvas id="lessonCanvas" width="340" height="340"></canvas>
+                <div class="controls">
+                    <label>Source Angle (θ)</label>
+                    <input type="range" id="angleSlider" min="0" max="360" value="0">
+                    <p id="readout" style="color: var(--accent-primary);">Range: Increasing</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-card"><strong>Equation</strong><br>r = a + bθ</div>
+            <div class="stat-card"><strong>Feature</strong><br>Constant Growth</div>
+            <div class="stat-card"><strong>Best For</strong><br>Radar, Broadband</div>
+        </div>
+
+        <div class="challenge-section">
+            <h2>Challenge: The Area Scan</h2>
+            <p>You need to design a radar system that scans a circular area from the center outwards, ensuring no blind spots as it sweeps.</p>
+            <br>
+            <label><strong>Select Pattern:</strong></label>
+            <select id="challengeSelect" data-correct="spiral" style="padding: 10px; border-radius: 8px;">
+                <option value="select">-- Choose --</option>
+                <option value="omni">Omnidirectional</option>
+                <option value="spiral">Spiral</option>
+                <option value="cardioid">Cardioid</option>
+            </select>
+            <div id="challengeFeedback" class="feedback-box"></div>
+        </div>
+    </div>
+
+    <script>const patternType = 'spiral';</script>
+    <script src="lesson.js"></script>
+</body>
+</html>
