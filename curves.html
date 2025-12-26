@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Curves Library | Vector View</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .library-card { background: white; padding: 25px; border-radius: 16px; border: 1px solid #eee; transition: transform 0.2s, border-color 0.2s; cursor: pointer; }
+        .library-card:hover { transform: translateY(-5px); border-color: var(--accent-primary); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .icon { font-size: 40px; margin-bottom: 15px; display: block; }
+        .tag { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; background: #e0f7f3; color: #007f6d; margin-top: 10px; }
+        a { text-decoration: none; color: inherit; }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo"><a href="index.html" style="text-decoration:none;"><span class="brand-name">Vector<span class="text-dark">View</span></span></a></div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="curves.html" class="active">Curves</a>
+                <a href="challenges.html">Challenges</a>
+                <a href="theory.html">Theory</a>
+                <a href="about.html">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="padding-top: 60px; padding-bottom: 80px;">
+        <h1>Pattern Library</h1>
+        <p class="subtitle">A complete reference of all polar patterns and sensitivity curves.</p>
+
+        <div class="library-grid">
+            <a href="omni.html">
+                <div class="library-card">
+                    <span class="icon">⚪</span>
+                    <h3>Omnidirectional</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Captures sound equally from all directions.</p>
+                    <span class="tag">Basic</span>
+                </div>
+            </a>
+
+            <a href="cardioid.html">
+                <div class="library-card">
+                    <span class="icon"❤️</span>
+                    <h3>Cardioid</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Heart-shaped. Rejects sound from the rear.</p>
+                    <span class="tag">Standard</span>
+                </div>
+            </a>
+
+            <a href="figure8.html">
+                <div class="library-card">
+                    <span class="icon">🎱</span>
+                    <h3>Figure-8</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Bi-directional. Front and back pickup only.</p>
+                    <span class="tag">Advanced</span>
+                </div>
+            </a>
+
+            <a href="supercardioid.html">
+                <div class="library-card">
+                    <span class="icon">🎙️</span>
+                    <h3>Supercardioid</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Narrower pickup with a small rear lobe.</p>
+                    <span class="tag">Live Sound</span>
+                </div>
+            </a>
+
+            <a href="rose.html">
+                <div class="library-card">
+                    <span class="icon">🌸</span>
+                    <h3>Rose Curve</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Sinusoid plotted in polar coordinates.</p>
+                    <span class="tag">Math</span>
+                </div>
+            </a>
+
+            <a href="spiral.html">
+                <div class="library-card">
+                    <span class="icon">🌀</span>
+                    <h3>Archimedean Spiral</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Constant speed moving away from center.</p>
+                    <span class="tag">Geometry</span>
+                </div>
+            </a>
+
+            <a href="shotgun.html">
+                <div class="library-card">
+                    <span class="icon">🔫</span>
+                    <h3>Shotgun (Lobar)</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Extremely directional for long distances.</p>
+                    <span class="tag">Film/TV</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
