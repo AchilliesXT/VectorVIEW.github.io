@@ -113,12 +113,8 @@ function calculateR(pType, angle) {
         return scale * Math.abs(0.37 + 0.63 * Math.cos(angle - Math.PI / 2));
     }
     else if (pType === 'shotgun') {
-        // Formula: cos(theta)^4 (Simplified Lobar)
-        // If the cosine is negative (rear/sides), we clamp it to 0 for a tight beam
-        let c = Math.cos(angle);
-        if (c < 0) c = 0;
-        let cardioid = 0.5 * (1 + Math.cos(angle));
-        return scale * cardioid * Math.pow(c, 4);
+        let r = 0.25 + 0.75 * Math.cos(angle);
+        return scale * Math.max(r, 0);
     }
     return scale;
 }
@@ -129,6 +125,7 @@ if (slider) {
     drawGraph();
 
 }
+
 
 
 
