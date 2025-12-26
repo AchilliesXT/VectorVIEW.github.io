@@ -102,7 +102,7 @@ function calculateR(pType, angle) {
     }
     else if (pType === 'spiral') {
         return scale * angle
-    
+    }
     return scale;
 }
 
@@ -112,3 +112,4 @@ if (slider) {
     drawGraph();
 
 }
+
