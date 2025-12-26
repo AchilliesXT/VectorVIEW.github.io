@@ -115,9 +115,10 @@ function calculateR(pType, angle) {
     else if (pType === 'shotgun') {
         // Formula: cos(theta)^4 (Simplified Lobar)
         // If the cosine is negative (rear/sides), we clamp it to 0 for a tight beam
-        let val = Math.cos(angle - Math.PI / 2);
-        if (val < 0) return 0; // strict front pickup
-        return scale * Math.pow(val, 4);
+        let c = Math.cos(angle);
+        if (c < 0) c = 0;
+        let cardioid = 0.5 * (1 + Math.cos(angle));
+        return scale * cardioid * Math.pow(c, 4);
     }
     return scale;
 }
@@ -128,6 +129,7 @@ if (slider) {
     drawGraph();
 
 }
+
 
 
 
