@@ -1,5 +1,11 @@
 const canvas = document.getElementById('polarCanvas');
-const ctx = canvas.getContext('2d');
+
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+
+  // ⬇️ KEEP ALL YOUR EXISTING CODE HERE ⬇️
+  // (size, center, scale, draw(), animation, everything)
+}
 
 // Canvas Settings (High DPI fix)
 const size = 400;
@@ -87,4 +93,5 @@ function draw() {
 }
 
 // Start Animation
+
 draw();
